@@ -7,36 +7,46 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 const faqs = [
   {
-    question: "What is SDEC?",
-    answer: "SDEC is not just a teaching academy. It is a professional skill development and career enablement platform where individuals learn practical, industry-relevant skills, gain real-world experience, and earn while they learn—preparing them to succeed in today’s competitive workforce.."
+    question: "What is SDEC Academy?",
+    answer: "SDEC is a premium career enablement platform. We combine industry-relevant skills with real-world experience, helping you build a professional portfolio while you learn."
   },
   {
-    question: "Why choose a Software Engineer course?",
-    answer: "This course is more than learning technology—it’s about shaping your future. You build real projects for companies, develop your personal brand, and learn how to confidently communicate and deliver products to clients. With hands-on experience and industry-focused skills, you don’t just prepare for a job—you prepare for a career you can grow, earn, and believe in."
+    question: "Why choose our courses?",
+    answer: "Our training goes beyond theory. You will work on live company projects, build your personal brand, and gain the confidence to deliver real products to clients."
   },
   {
-    question: "Is the training curriculum suitable for beginners as well as professionals?",
-    answer: "Yes. SDEC’s curriculum is designed to support both beginners and working professionals, with step-by-step learning paths and advanced modules based on individual skill levels."
+    question: "Is this suitable for beginners?",
+    answer: "Absolutely. Our curriculum is tailored for all levels. We provide step-by-step guidance for beginners and advanced specialized modules for experienced professionals."
   },
   {
-    question: "Will I receive a certificate after completing the course at SDEC?",
-    answer: "Yes. Upon successful completion of the course, learners receive a recognized course completion certificate from SDEC, which helps strengthen resumes and improve job opportunities."
+    question: "Do you provide certification?",
+    answer: "Yes. Upon completion, you receive a recognized industry certification from SDEC. This validates your skills and significantly enhances your job prospects."
   }
 ];
 
 // Animated Plus/X Icon
+// Animated Plus/Asterisk Icon
 const AccordionIcon = ({ isOpen }: { isOpen: boolean }) => {
   return (
-    <div className="relative w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
+    <div className={`relative w-10 h-10 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 ${isOpen ? "bg-cyan-400 rotate-180" : "bg-white group-hover:scale-105"}`}>
+      {/* Plus Icon (Closed State) */}
       <motion.div
-        animate={{ rotate: isOpen ? 45 : 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-        className="relative w-5 h-5 flex items-center justify-center"
+        animate={{ opacity: isOpen ? 0 : 1, rotate: isOpen ? 90 : 0 }}
+        className="absolute"
       >
-        {/* Horizontal Line */}
-        <span className="absolute w-5 h-0.5 bg-navy rounded-full" />
-        {/* Vertical Line */}
-        <span className="absolute w-0.5 h-5 bg-navy rounded-full" />
+        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-0.5 bg-navy rounded-full" />
+        <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-0.5 h-4 bg-navy rounded-full" />
+      </motion.div>
+
+      {/* Asterisk Icon (Open State) - Simulated with 3 lines */}
+      <motion.div
+        animate={{ opacity: isOpen ? 1 : 0, rotate: isOpen ? 180 : 0 }}
+        className="absolute"
+      >
+         {/* Center dot/hub handled by crossing lines */}
+         <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-[2px] bg-navy rounded-full" />
+         <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-[2px] bg-navy rounded-full rotate-60" />
+         <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-[2px] bg-navy rounded-full -rotate-60" />
       </motion.div>
     </div>
   );
@@ -79,7 +89,7 @@ export function FAQ() {
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
               >
-                <span className={`text-lg md:text-xl font-medium transition-colors duration-300 ${openIndex === index ? "text-white" : "text-gray-300"}`}>
+                <span className={`text-base md:text-lg font-medium transition-colors duration-300 ${openIndex === index ? "text-white" : "text-gray-300"}`}>
                   {faq.question}
                 </span>
                 <AccordionIcon isOpen={openIndex === index} />

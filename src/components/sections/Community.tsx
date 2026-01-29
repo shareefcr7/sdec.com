@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Users, GraduationCap, UserCheck, MonitorPlay, Briefcase, Rocket, Code, Laptop, Skull, Zap, RefreshCw, Terminal, Check } from "lucide-react";
+import { Users, GraduationCap, UserCheck, MonitorPlay, Briefcase, Rocket, Code, Laptop, Skull, Zap, RefreshCw, Terminal, Check, SatelliteDish } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -30,7 +30,7 @@ const CodeRain = () => {
   return (
     <div className="absolute inset-0 overflow-hidden opacity-20 pointer-events-none">
       <div className="flex justify-between">
-        {[...Array(8)].map((_, i) => {
+        {[...Array(5)].map((_, i) => { // Reduced from 8 to 5 for performance
            const Icon = rainIcons[Math.floor(Math.random() * rainIcons.length)];
            const keyword = keywords[Math.floor(Math.random() * keywords.length)];
            return (
@@ -44,7 +44,7 @@ const CodeRain = () => {
                 ease: "linear",
                 delay: Math.random() * 5,
               }}
-              className="text-electric-blue/40 text-[12px] font-mono writing-vertical flex flex-col items-center gap-4 font-bold tracking-widest"
+              className="text-electric-blue/40 text-[12px] font-mono writing-vertical flex flex-col items-center gap-4 font-bold tracking-widest will-change-transform"
               style={{ writingMode: "vertical-rl" }}
             >
               {Math.random() > 0.5 && <Icon size={14} className="mb-2 rotate-90 text-teal-400" />}
@@ -64,7 +64,7 @@ const SoftwareUpdate = () => {
       <motion.div
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="bg-[#0f172a] border border-blue-500/30 p-4 rounded-xl shadow-lg backdrop-blur-md w-48"
+        className="bg-[#0f172a] border border-blue-500/30 p-4 rounded-xl shadow-lg backdrop-blur-md w-48 will-change-transform"
       >
         <div className="flex items-center gap-3 mb-2">
           <motion.div
@@ -96,7 +96,7 @@ const CodingPerson = () => {
        <motion.div
          animate={{ y: [0, 10, 0] }}
          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-         className="relative"
+         className="relative will-change-transform"
        >
          {/* Person Icon */}
          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center shadow-lg border-2 border-white/10">
@@ -158,7 +158,7 @@ const HackerBattle = () => {
           <motion.div
             animate={{ x: [0, 50, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute left-0"
+            className="absolute left-0 will-change-transform"
           >
             <div className="relative">
               <Laptop size={48} className="text-blue-400" />
@@ -183,7 +183,7 @@ const HackerBattle = () => {
           <motion.div
              animate={{ x: [0, -50, 0] }}
              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-             className="absolute right-0"
+             className="absolute right-0 will-change-transform"
           >
              <div className="relative">
                <Skull size={48} className="text-red-500" />
@@ -191,6 +191,30 @@ const HackerBattle = () => {
              </div>
           </motion.div>
        </div>
+    </div>
+  );
+};
+
+// Satellite Scan Animation
+const SatelliteScan = () => {
+  return (
+    <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden hidden md:block">
+       <motion.div
+          initial={{ x: "110vw", y: "15vh", opacity: 0, rotate: -15 }}
+          animate={{ x: "-10vw", y: "25vh", opacity: [0, 1, 1, 0], rotate: 15 }}
+          transition={{ duration: 40, repeat: Infinity, delay: 5, ease: "linear" }}
+          className="absolute z-0 will-change-transform"
+       >
+          <div className="relative">
+             <SatelliteDish size={28} className="text-gray-400 opacity-60" />
+             {/* Blinking Light on Satellite */}
+             <motion.div 
+                animate={{ opacity: [0, 1, 0] }}
+                transition={{ duration: 1, repeat: Infinity }}
+                className="absolute top-0 right-0 w-1.5 h-1.5 bg-red-500 rounded-full shadow-[0_0_5px_#ef4444]"
+             />
+          </div>
+       </motion.div>
     </div>
   );
 };
@@ -211,6 +235,7 @@ export function Community() {
       {/* New Animations */}
       <SoftwareUpdate />
       <CodingPerson />
+      <SatelliteScan />
 
       <div className="container mx-auto px-6 relative z-10 flex flex-col items-center">
         
@@ -233,7 +258,7 @@ export function Community() {
            <motion.div
              animate={{ scale: [1, 1.5, 1], opacity: [0.1, 0, 0.1] }}
              transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
-             className="absolute inset-0 bg-electric-blue/20 rounded-full blur-xl z-0"
+             className="absolute inset-0 bg-electric-blue/20 rounded-full blur-xl z-0 will-change-transform"
            />
 
            {/* Central Core */}
@@ -280,7 +305,7 @@ export function Community() {
            <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-0 w-full h-full"
+              className="absolute inset-0 w-full h-full will-change-transform"
            >
               {avatars.map((avatar, i) => {
                  const angle = (i / avatars.length) * 360;
@@ -302,8 +327,8 @@ export function Community() {
                         <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 md:border-2 ${avatar.color} bg-[#0A192F] flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.5)] z-20 relative`}>
                            <avatar.icon size={16} className={avatar.text} />
                         </div>
-                        {/* Label - Subtle on mobile */}
-                        <div className="absolute top-full mt-2 bg-navy/90 text-white text-[8px] md:text-[10px] font-bold py-1 px-3 rounded-full border border-white/10 shadow-lg whitespace-nowrap z-10 opacity-0 md:opacity-100 group-hover:opacity-100 transition-opacity">
+                        {/* Label - Visible on Mobile now */}
+                        <div className="absolute top-full mt-2 bg-navy/80 backdrop-blur-md text-white md:text-white text-[10px] md:text-[11px] font-bold py-1.5 px-3 rounded-full border border-white/10 shadow-[0_0_10px_rgba(0,0,0,0.8)] whitespace-nowrap z-10 opacity-100 transition-opacity">
                            {avatar.role}
                         </div>
                      </motion.div>

@@ -187,21 +187,22 @@ export function AboutSummary() {
              </div>
              
              {/* Floating Elements */}
+             {/* Floating Elements - Certificate Card */}
              <motion.div 
                animate={{ y: [-10, 10, -10] }}
                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-               className="absolute right-4 bottom-4 md:-right-6 md:top-1/2 md:-translate-y-1/2 bg-black/30 backdrop-blur-md border border-white/10 p-4 rounded-2xl z-30 shadow-2xl flex flex-col items-center justify-center text-center gap-2 max-w-[160px] md:max-w-[200px]"
+               className="absolute right-2 bottom-2 md:-right-6 md:top-1/2 md:-translate-y-1/2 bg-black/40 backdrop-blur-xl border border-white/10 p-3 md:p-4 rounded-xl md:rounded-2xl z-30 shadow-2xl flex flex-col items-center justify-center text-center gap-1.5 md:gap-2 w-[120px] md:w-auto md:max-w-[200px]"
              >
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/5 flex items-center justify-center border border-white/10">
-                   <GraduationCap size={20} className="text-white md:w-6 md:h-6" />
+                <div className="w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-white/5 flex items-center justify-center border border-white/10">
+                   <GraduationCap size={16} className="text-white md:w-6 md:h-6" />
                 </div>
-                <div className="text-xs md:text-sm font-bold text-white">Certificate of Completion</div>
-                <div className="flex items-center justify-center gap-2 opacity-60">
-                   <Code size={12} className="text-blue-400" />
-                   <div className="w-1 h-1 rounded-full bg-white/20" />
-                   <Database size={12} className="text-purple-400" />
-                   <div className="w-1 h-1 rounded-full bg-white/20" />
-                   <Server size={12} className="text-cyan-400" />
+                <div className="text-[10px] md:text-sm font-bold text-white leading-tight">Certificate of Completion</div>
+                <div className="flex items-center justify-center gap-1.5 opacity-60 mt-0.5">
+                   <Code size={10} className="text-blue-400 md:w-3 md:h-3" />
+                   <div className="w-0.5 h-0.5 md:w-1 md:h-1 rounded-full bg-white/20" />
+                   <Database size={10} className="text-purple-400 md:w-3 md:h-3" />
+                   <div className="w-0.5 h-0.5 md:w-1 md:h-1 rounded-full bg-white/20" />
+                   <Server size={10} className="text-cyan-400 md:w-3 md:h-3" />
                 </div>
              </motion.div>
 

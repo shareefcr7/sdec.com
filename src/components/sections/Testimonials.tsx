@@ -9,66 +9,66 @@ import { SectionHeading } from "@/components/ui/section-heading";
 const testimonials = [
   {
     id: 1,
-    name: "Fayas Rahman",
-    role: "Frontend Developer",
-    text: "The intensive training and real-time projects helped me master React and modern UI libraries. I feel completely job-ready now.",
-    image: "/testimonials/fayas.png"
+    name: "Fayas",
+    role: "Content Creator",
+    text: "Transforming technical concepts into engaging content was my goal. SDEC gave me the platform to blend technology with creativity perfectly.",
+    image: "/images/team/team_2.png"
   },
   {
     id: 2,
     name: "Naima Nurin",
     role: "Backend Developer",
-    text: "Understanding server architecture and database management was challenging but rewarding. The support from mentors made it easy.",
+    text: "Understanding server architecture and database management was challenging but rewarding. The support from mentors made the complex easy to master.",
     image: "/testimonials/naima.png"
   },
   {
     id: 3,
     name: "Muhammed Yasir",
     role: "Full Stack Developer",
-    text: "Building full-stack applications from scratch gave me a deep understanding of how the web works. The curriculum is excellent.",
+    text: "Building full-stack applications from scratch gave me a deep understanding of the web. The curriculum excellence is truly industry-standard.",
     image: "/testimonials/yasir.png"
   },
   {
     id: 4,
     name: "Sharfas",
     role: "Backend Developer",
-    text: "The focus on scalable code and best practices set this course apart. I learned skills that are actually used in the industry.",
+    text: "The focus on scalable code and best practices set this course apart. I learned skills that are actually used in top-tier tech companies.",
     image: "/testimonials/sharfas.png"
   },
   {
     id: 5,
     name: "Sivanand",
-    role: "frontend developer",
-    text: "It's not just about tools, it's about design thinking. I learned how to create user-centric designs that stand out.",
+    role: "Frontend Developer",
+    text: "It's not just about tools, it's about design thinking. I learned how to create user-centric designs that truly stand out in the market.",
     image: "/testimonials/sivanand.png"
   },
   {
     id: 6,
     name: "Marshook Ali",
-    role: "MERN Stack Developer",
-    text: "Working on real-world projects pushed my skills beyond the classroom. It was a game-changer for my confidence and career.",
-    image: "/testimonials/marshook_v2.png"
+    role: "Fullstack Developer",
+    text: "From basic HTML to complex React architectures, the mentorship here allowed me to bridge the gap between design and functionality seamlessly.",
+    image: "/images/team/team_1.png"
   },
   {
     id: 7,
-    name: "Rasha Shafi",
-    role: "MERN Stack Developer",
-    text: "The hands-on exposure to live projects helped me connect theory with practice. I now feel ready for real tech challenges!",
-    image: "/testimonials/rasha_v2.png"
+    name: "Rasha KP",
+    role: "Fullstack Developer",
+    text: "The structured curriculum and hands-on projects helped me master the full stack ecosystem. I now build scalable systems with confidence.",
+    image: "/images/team/team_3.png"
   },
   {
     id: 8,
-    name: "Shareef",
-    role: "MERN Stack Developer",
-    text: "Contributing to actual projects gave me a huge learning boost. Every task felt like a step toward becoming a pro",
-    image: "/testimonials/shareef_v2.png"
+    name: "Shareef CV",
+    role: "Fullstack Developer",
+    text: "Mastering the MERN stack here was a turning point. The real-time projects gave me the confidence to handle high-performance web applications.",
+    image: "/images/team/team_5.png"
   },
   {
     id: 9,
     name: "Ajnas",
-    role: "MERN Stack Developer",
-    text: "Being part of live projects gave me practical knowledge and teamwork experience that no tutorial could offer. It was a great learning curve.",
-    image: "/testimonials/ajnas_v2.png"
+    role: "Fullstack Developer",
+    text: "Debugging complex issues and optimizing performance became second nature. The practical exposure here is unmatched in the industry.",
+    image: "/images/team/team_7.png"
   },
   {
     id: 10,
@@ -81,15 +81,36 @@ const testimonials = [
     id: 11,
     name: "Ziyad",
     role: "Frontend Developer",
-    text: "Understanding cloud infrastructure and CI/CD pipelines has accelerated my career. The practical labs were incredibly useful.",
+    text: "Understanding cloud infrastructure and CI/CD pipelines has accelerated my career. The practical labs were incredibly useful for my growth.",
     image: "/testimonials/ziyad_v2.png"
   },
   {
     id: 12,
     name: "Nived",
-    role: "Full Stack Developer",
-    text: "The project-based learning approach was exactly what I needed. I went from knowing basic HTML to building full-stack apps.",
-    image: "/testimonials/nived.png"
+    role: "Software Tester",
+    text: "I learned that quality is as important as code. The rigorous testing modules helped me ensure software reliability and stability in production.",
+    image: "/images/team/nived.png"
+  },
+  {
+    id: 13,
+    name: "Hrithik",
+    role: "Fullstack Developer",
+    text: "Creating intuitive user experiences requires deep technical knowledge. This course gave me the tools to build future-ready interfaces.",
+    image: "/images/team/hrithik.png"
+  },
+  {
+    id: 14,
+    name: "Minhaj",
+    role: "Fullstack Developer",
+    text: "Understanding the backend logic while perfecting the frontend UI was a challenge I overcame here. Now I build complete digital solutions.",
+    image: "/images/team/minhaj.png"
+  },
+  {
+    id: 15,
+    name: "Danish",
+    role: "Fullstack Developer",
+    text: "The transition from code to deployment was smooth thanks to the expert guidance. I can now bring any complex digital idea to life.",
+    image: "/images/team/danish.png"
   }
 ];
 

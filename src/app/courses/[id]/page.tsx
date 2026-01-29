@@ -1,17 +1,23 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import { useState, useEffect } from "react";
 import { courses } from "@/lib/data";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { motion } from "framer-motion";
-import { CheckCircle, Clock, Globe, Award, Shield, ArrowRight, Star, Zap, Medal, BookOpen, Users, Video, FileText, Smartphone, Code } from "lucide-react";
+import { CheckCircle, Clock, Globe, Award, Shield, ArrowRight, Star, Zap, Medal, BookOpen, Users, Video, FileText, Smartphone, Code, Rocket, SatelliteDish } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function CourseDetail() {
   const params = useParams();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   const id = params.id as string;
   const course = courses.find((c) => c.id === id);
 
@@ -69,7 +75,7 @@ export default function CourseDetail() {
                 </div>
 
                 <Link href="/contact" className="flex-1">
-                  <Button className="w-full h-full group relative overflow-hidden bg-electric-blue/90 hover:bg-electric-blue active:bg-electric-blue active:scale-[0.98] text-navy hover:text-white font-black px-12 py-10 text-2xl rounded-none transition-all duration-200 border-none">
+                  <Button className="w-full h-full group relative overflow-hidden bg-electric-blue hover:bg-electric-blue active:bg-white active:text-navy text-navy hover:text-white font-black px-12 py-10 text-2xl rounded-none transition-all duration-200 border-none shadow-[0_0_40px_rgba(0,210,255,0.3)] hover:shadow-[0_0_60px_rgba(0,210,255,0.5)]">
                     <span className="relative z-10 flex items-center justify-center gap-4 tracking-tighter">
                       {course.ctaLabel.toUpperCase()}
                       <ArrowRight className="group-hover:translate-x-2 transition-transform" size={28} />
@@ -132,7 +138,7 @@ export default function CourseDetail() {
                  <h2 className="text-sm font-black text-electric-blue uppercase tracking-[0.4em] mb-6 flex items-center gap-3">
                     <Shield size={16} /> The Professional Journey
                  </h2>
-                 <div className="text-2xl md:text-3xl text-white leading-relaxed font-light italic opacity-95 border-l-4 border-electric-blue/30 pl-8 md:pl-12">
+                 <div className="text-lg md:text-xl text-white leading-relaxed font-light italic opacity-95 border-l-4 border-electric-blue/30 pl-8 md:pl-12">
                     "{course.story}"
                  </div>
               </div>
@@ -157,7 +163,138 @@ export default function CourseDetail() {
       </section>
 
       {/* Learning Assets Section */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-24 relative overflow-hidden bg-[#02030a]">
+         {/* Space Background Animation - Performance Optimized */}
+         <div className="absolute inset-0 overflow-hidden pointer-events-none transform translate-z-0">
+            {/* Stars Layer 1 - Slow & Small */}
+            {mounted && [...Array(15)].map((_, i) => (
+              <motion.div
+                key={`star-1-${i}`}
+                initial={{ opacity: Math.random(), x: Math.random() * 1000, y: Math.random() * 1000 }}
+                animate={{ 
+                  y: [Math.random() * 1000, Math.random() * 1000 - 100],
+                  opacity: [0.2, 0.8, 0.2] 
+                }}
+                transition={{ duration: Math.random() * 10 + 20, repeat: Infinity, ease: "linear" }}
+                className="absolute w-0.5 h-0.5 bg-cyan-200 rounded-full shadow-[0_0_2px_#ffffff] will-change-transform"
+                style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%` }}
+              />
+            ))}
+            {/* Stars Layer 2 - Medium & Brighter */}
+            {mounted && [...Array(8)].map((_, i) => (
+              <motion.div
+                key={`star-2-${i}`}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: [0, 1, 0], scale: [0, 1.5, 0] }}
+                transition={{ duration: Math.random() * 3 + 2, repeat: Infinity, delay: Math.random() * 5 }}
+                className="absolute w-1 h-1 bg-cyan-400 rounded-full blur-[0.5px] shadow-[0_0_4px_#22d3ee] will-change-transform"
+                style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%` }}
+              />
+            ))}
+            
+            {/* SOLAR SYSTEM ANIMATION */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-30 will-change-transform">
+               {/* Orbit 1 */}
+               <div className="absolute inset-[15%] rounded-full border border-white/5">
+                  <motion.div 
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0 will-change-transform"
+                  >
+                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-cyan-400/50 rounded-full shadow-[0_0_15px_#22d3ee] backdrop-blur-sm" />
+                  </motion.div>
+               </div>
+               {/* Orbit 2 - Reverse */}
+               <div className="absolute inset-[30%] rounded-full border border-white/5">
+                  <motion.div 
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0 will-change-transform"
+                  >
+                     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-6 bg-purple-500/50 rounded-full shadow-[0_0_20px_#a855f7] backdrop-blur-sm">
+                        {/* Moon for Planet 2 */}
+                        <motion.div 
+                           animate={{ rotate: 360 }}
+                           transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                           className="absolute inset-[-150%] will-change-transform"
+                        >
+                           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-white/50 rounded-full" />
+                        </motion.div>
+                     </div>
+                  </motion.div>
+               </div>
+               {/* Orbit 3 */}
+               <div className="absolute inset-[45%] rounded-full border border-white/5">
+                  <motion.div 
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0 will-change-transform"
+                  >
+                     <div className="absolute top-1/2 right-0 translate-x-1/2 w-3 h-3 bg-blue-500/50 rounded-full shadow-[0_0_10px_#3b82f6]" />
+                  </motion.div>
+               </div>
+            </div>
+
+            {/* Nebula Cloud Effect - Brighter */}
+            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-cyan-500/10 rounded-full blur-[100px] mix-blend-screen opacity-50 animate-pulse will-change-transform" />
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[100px] mix-blend-screen opacity-40 will-change-transform" />
+
+            {/* Background Drifting Rockets - 3 Unique Trajectories */}
+            {mounted && (
+               <>
+                  {/* Rocket 1: Diagonal Bottom-Left to Top-Right (Fast) */}
+                  <motion.div
+                     initial={{ x: "-10vw", y: "110vh", opacity: 0 }}
+                     animate={{ x: "110vw", y: "-10vh", opacity: [0, 1, 1, 0] }}
+                     transition={{ duration: 15, repeat: Infinity, delay: 2, ease: "linear" }}
+                     className="absolute z-0 will-change-transform"
+                  >
+                     <Rocket size={20} className="text-cyan-400 rotate-45 opacity-60" />
+                     <div className="absolute top-full right-full w-20 h-[1px] bg-gradient-to-r from-transparent to-cyan-400/50 origin-top-right rotate-45 transform -translate-y-1" />
+                  </motion.div>
+
+                  {/* Rocket 2: Horizontal Left to Right (Slow) */}
+                  <motion.div
+                     initial={{ x: "-10vw", y: "60vh", opacity: 0 }}
+                     animate={{ x: "110vw", y: "50vh", opacity: [0, 0.5, 0.5, 0] }}
+                     transition={{ duration: 25, repeat: Infinity, delay: 0, ease: "linear" }}
+                     className="absolute z-0 will-change-transform"
+                  >
+                     <Rocket size={16} className="text-purple-400 rotate-90 opacity-40" />
+                     <div className="absolute top-1/2 right-full w-32 h-[1px] bg-gradient-to-r from-transparent to-purple-400/30" />
+                  </motion.div>
+
+                  {/* Rocket 3: Diagonal Top-Left to Bottom-Right (Medium) */}
+                  <motion.div
+                     initial={{ x: "-10vw", y: "10vh", opacity: 0 }}
+                     animate={{ x: "110vw", y: "80vh", opacity: [0, 0.6, 0.6, 0] }}
+                     transition={{ duration: 20, repeat: Infinity, delay: 10, ease: "linear" }}
+                     className="absolute z-0 will-change-transform"
+                  >
+                     <Rocket size={18} className="text-blue-400 rotate-[135deg] opacity-50" />
+                     <div className="absolute bottom-full right-full w-24 h-[1px] bg-gradient-to-r from-transparent to-blue-400/40 origin-bottom-right rotate-[135deg]" />
+                  </motion.div>
+
+                  {/* Satellite Animation - Slow Horizontal Orbit */}
+                  <motion.div
+                     initial={{ x: "110vw", y: "15vh", opacity: 0, rotate: -15 }}
+                     animate={{ x: "-10vw", y: "25vh", opacity: [0, 1, 1, 0], rotate: 15 }}
+                     transition={{ duration: 40, repeat: Infinity, delay: 5, ease: "linear" }}
+                     className="absolute z-0 will-change-transform"
+                  >
+                     <div className="relative">
+                        <SatelliteDish size={24} className="text-gray-400 opacity-60" />
+                        {/* Blinking Light on Satellite */}
+                        <motion.div 
+                           animate={{ opacity: [0, 1, 0] }}
+                           transition={{ duration: 1, repeat: Infinity }}
+                           className="absolute top-0 right-0 w-1 h-1 bg-red-500 rounded-full shadow-[0_0_5px_#ef4444]"
+                        />
+                     </div>
+                  </motion.div>
+               </>
+            )}
+         </div>
          <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-20">
                <h2 className="text-4xl md:text-5xl font-black text-white mb-4 uppercase tracking-tighter">What's <span className="text-gradient">Included</span></h2>
@@ -165,114 +302,9 @@ export default function CourseDetail() {
             </div>
             
             <div className="relative max-w-6xl mx-auto">
-                {/* Mobile Snake Line Animation */}
-                <div className="block lg:hidden absolute inset-0 -top-8 -z-10 w-full h-full pointer-events-none">
-                   <svg className="w-full h-full visible" viewBox="0 0 400 800" fill="none" preserveAspectRatio="none">
-                     <defs>
-                       <linearGradient id="mobileAssetLineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                         <stop offset="0%" stopColor="#7000ff" stopOpacity="0.1" />
-                         <stop offset="50%" stopColor="#00d2ff" stopOpacity="0.3" />
-                         <stop offset="100%" stopColor="#7000ff" stopOpacity="0.1" />
-                       </linearGradient>
-                       <linearGradient id="mobileAssetActiveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                         <stop offset="0%" stopColor="#7000ff" />
-                         <stop offset="100%" stopColor="#00d2ff" />
-                       </linearGradient>
-                     </defs>
+                {/* Mobile Snake Line Animation - Removed */ }
 
-                     {/* 
-                        Mobile Path (4 Rows, 2 Cols):
-                        Row 1 (y=50): 100 -> 300
-                        Row 2 (y=250): 300 -> 100
-                        Row 3 (y=450): 100 -> 300
-                        Row 4 (y=650): 300 -> 100
-                     */}
-                     <motion.path 
-                       d="M 100 50 L 300 50 A 50 50 0 0 1 300 150 L 300 150 A 50 50 0 0 1 300 250 L 100 250 A 50 50 0 0 0 100 350 L 100 350 A 50 50 0 0 0 100 450 L 300 450 A 50 50 0 0 1 300 550 L 300 550 A 50 50 0 0 1 300 650 L 100 650"
-                       stroke="url(#mobileAssetLineGradient)"
-                       strokeWidth="2"
-                       strokeDasharray="8 8"
-                       strokeLinecap="round"
-                       initial={{ opacity: 0.2 }}
-                       animate={{ opacity: [0.2, 0.4, 0.2] }}
-                       transition={{ duration: 3, repeat: Infinity }}
-                     />
-
-                     <path
-                       d="M 100 50 L 300 50 A 50 50 0 0 1 300 150 L 300 150 A 50 50 0 0 1 300 250 L 100 250 A 50 50 0 0 0 100 350 L 100 350 A 50 50 0 0 0 100 450 L 300 450 A 50 50 0 0 1 300 550 L 300 550 A 50 50 0 0 1 300 650 L 100 650"
-                       stroke="url(#mobileAssetActiveGradient)"
-                       strokeWidth="2"
-                       strokeLinecap="round"
-                       className="opacity-40"
-                     />
-                     
-                     <circle r="4" fill="#00d2ff" filter="url(#assetGlow)">
-                       <animateMotion 
-                         dur="15s" 
-                         repeatCount="indefinite" 
-                         path="M 100 50 L 300 50 A 50 50 0 0 1 300 150 L 300 150 A 50 50 0 0 1 300 250 L 100 250 A 50 50 0 0 0 100 350 L 100 350 A 50 50 0 0 0 100 450 L 300 450 A 50 50 0 0 1 300 550 L 300 550 A 50 50 0 0 1 300 650 L 100 650"
-                       />
-                     </circle>
-                   </svg>
-                </div>
-
-                {/* Desktop Snake Line Animation */}
-                <div className="hidden lg:block absolute inset-0 -top-8 -z-10 w-full h-full pointer-events-none">
-                   <svg className="w-full h-full visible" viewBox="0 0 1200 400" fill="none" preserveAspectRatio="none">
-                     <defs>
-                       <linearGradient id="assetLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                         <stop offset="0%" stopColor="#7000ff" stopOpacity="0.1" />
-                         <stop offset="50%" stopColor="#00d2ff" stopOpacity="0.3" />
-                         <stop offset="100%" stopColor="#7000ff" stopOpacity="0.1" />
-                       </linearGradient>
-                       <linearGradient id="assetActiveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                         <stop offset="0%" stopColor="#7000ff" />
-                         <stop offset="100%" stopColor="#00d2ff" />
-                       </linearGradient>
-                       <filter id="assetGlow" x="-50%" y="-50%" width="200%" height="200%">
-                         <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-                         <feMerge>
-                           <feMergeNode in="coloredBlur" />
-                           <feMergeNode in="SourceGraphic" />
-                         </feMerge>
-                       </filter>
-                     </defs>
-
-                     {/* Background Track */}{/* Path Logic: 4 items top, 4 items bottom. 
-                         Grid cols 4. Center points approx: 
-                         12.5% (150), 37.5% (450), 62.5% (750), 87.5% (1050)
-                         Height gap approx 200 units.
-                     */}
-                     <motion.path 
-                       d="M 150 50 L 1050 50 A 100 100 0 0 1 1050 250 L 150 250"
-                       stroke="url(#assetLineGradient)"
-                       strokeWidth="2"
-                       strokeDasharray="8 8"
-                       strokeLinecap="round"
-                       initial={{ opacity: 0.2 }}
-                       animate={{ opacity: [0.2, 0.4, 0.2] }}
-                       transition={{ duration: 3, repeat: Infinity }}
-                     />
-
-                     {/* Active Line */}
-                     <path
-                       d="M 150 50 L 1050 50 A 100 100 0 0 1 1050 250 L 150 250"
-                       stroke="url(#assetActiveGradient)"
-                       strokeWidth="2"
-                       strokeLinecap="round"
-                       className="opacity-40"
-                     />
-                     
-                     {/* Moving Particle */}
-                     <circle r="4" fill="#00d2ff" filter="url(#assetGlow)">
-                       <animateMotion 
-                         dur="10s" 
-                         repeatCount="indefinite" 
-                         path="M 150 50 L 1050 50 A 100 100 0 0 1 1050 250 L 150 250"
-                       />
-                     </circle>
-                   </svg>
-                </div>
+                {/* Desktop Snake Line Animation - Removed */ }
 
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-16 gap-x-8">
                    {[
@@ -349,7 +381,7 @@ export default function CourseDetail() {
               </div>
            </div>
            
-           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
               {course.topics.map((item, i) => (
                 <motion.div 
                   key={i} 
@@ -357,22 +389,22 @@ export default function CourseDetail() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="flex items-start gap-6 p-10 rounded-[3rem] bg-navy-light/10 backdrop-blur-xl border border-white/5 hover:border-electric-blue/20 active:border-electric-blue/50 active:bg-electric-blue/5 transition-all duration-300 group relative overflow-hidden"
+                  className="flex flex-col sm:flex-row items-start gap-4 md:gap-6 p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] bg-navy-light/10 backdrop-blur-xl border border-white/5 hover:border-electric-blue/20 active:border-electric-blue/50 active:bg-electric-blue/5 transition-all duration-300 group relative overflow-hidden"
                 >
                    {/* Background Number */}
-                   <div className="absolute -right-4 -bottom-4 text-9xl font-black text-white/[0.02] pointer-events-none group-hover:text-electric-blue/[0.04] transition-colors">
+                   <div className="absolute -right-4 -bottom-4 text-8xl md:text-9xl font-black text-white/[0.02] pointer-events-none group-hover:text-electric-blue/[0.04] transition-colors">
                       {i + 1}
                    </div>
 
-                   <div className="flex-shrink-0 mt-1 bg-electric-blue/5 p-4 rounded-2xl group-hover:bg-electric-blue/20 transition-all duration-500 group-hover:rotate-6">
-                     <CheckCircle size={28} className="text-electric-blue" />
+                   <div className="flex-shrink-0 mt-1 bg-electric-blue/5 p-3 md:p-4 rounded-2xl group-hover:bg-electric-blue/20 transition-all duration-500 group-hover:rotate-6">
+                     <CheckCircle size={24} className="text-electric-blue sm:w-7 sm:h-7" />
                    </div>
-                   <div className="relative z-10">
-                      <span className="text-white text-2xl font-black block mb-3 uppercase tracking-tight">{item}</span>
-                      <p className="text-gray-400 text-sm leading-relaxed max-w-md">
+                   <div className="relative z-10 w-full">
+                      <span className="text-white text-xl md:text-2xl font-black block mb-2 md:mb-3 uppercase tracking-tight break-words">{item}</span>
+                      <p className="text-gray-400 text-xs md:text-sm leading-relaxed max-w-md">
                          Professional mastery of {item.toLowerCase()} through hands-on implementation and industry-standard workflows.
                       </p>
-                      <div className="mt-6 flex items-center gap-4">
+                      <div className="mt-4 md:mt-6 flex flex-wrap items-center gap-2 md:gap-4">
                          <span className="px-3 py-1 rounded-full bg-white/5 text-[10px] font-bold text-gray-500 uppercase tracking-widest border border-white/5">Lab Session Included</span>
                          <span className="px-3 py-1 rounded-full bg-white/5 text-[10px] font-bold text-gray-500 uppercase tracking-widest border border-white/5">Q&A Enabled</span>
                       </div>
