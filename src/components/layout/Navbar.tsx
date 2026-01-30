@@ -106,7 +106,7 @@ export function Navbar() {
             </Link>
           ))}
           
-          <Link href="/contact">
+          <Link href="/courses">
             <Button className="h-11 px-8 rounded-xl bg-white text-navy font-black text-[10px] tracking-[0.2em] uppercase hover:bg-white/90 shadow-xl transition-all">
               Join Elite
             </Button>
