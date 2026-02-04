@@ -144,7 +144,7 @@ export function Process() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
-                className="flex flex-col items-center text-center relative z-10"
+                className="flex flex-col items-center text-center relative z-10 will-change-transform"
               >
                   {/* Glowing Orbit Ring */}
                   <div className="relative mb-6 group cursor-pointer bg-navy rounded-full">
@@ -229,7 +229,7 @@ export function Process() {
                            return (
                               <motion.div
                                  key={i}
-                                 className="absolute left-1/2 top-1/2"
+                                 className="absolute left-1/2 top-1/2 will-change-transform"
                                  initial={{ x: 0, y: 0, scale: 0, opacity: 0 }}
                                  animate={{ 
                                     x: [0, 0, x], 

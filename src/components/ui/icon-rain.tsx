@@ -35,7 +35,7 @@ export function IconRain({ icons, className, count = 12 }: IconRainProps) {
         <motion.div
           key={i}
           className="absolute text-white/5 top-[-50px]"
-          style={{ left: item.x }}
+          style={{ left: item.x, willChange: 'transform' }}
           animate={{ 
             y: ["0vh", "120vh"],
             opacity: [0, 0.2, 0]
