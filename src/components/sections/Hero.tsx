@@ -83,7 +83,7 @@ export function Hero() {
         {/* Dynamic Light Streaks - Only if in view */}
         {isInView && (
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {[...Array(isMobile ? 2 : 4)].map((_, i) => ( // Reduced from 3/6 to 2/4
+            {[...Array(isMobile ? 3 : 6)].map((_, i) => (
               <motion.div
                 key={i}
                 className="absolute h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent"
@@ -108,7 +108,7 @@ export function Hero() {
         {/* Extra Active Stardust - Only rendered if mounted and in view */}
         {mounted && isInView && (
           <div className="absolute inset-0 pointer-events-none">
-            {[...Array(isMobile ? 8 : 25)].map((_, i) => ( // Reduced from 10/50 to 8/25
+            {[...Array(isMobile ? 10 : 50)].map((_, i) => (
               <motion.div
                 key={i}
                 className="absolute w-1 h-1 bg-white rounded-full blur-[1px]"

@@ -146,7 +146,7 @@ const TeamCard = memo(({ member, style, isActive }: { member: TeamMember, style:
     }}
     style={{ 
       willChange: "transform, opacity",
-      display: style.display 
+      // display: style.display // Optimization removed to be safer, focusing on pause logic
     }}
     className="absolute w-[260px] md:w-[320px] aspect-[3/4]"
   >
@@ -304,7 +304,8 @@ export function Team() {
   }, [isMuted, isInView, isMobile]);
 
   useEffect(() => {
-    if (!isInView) return; 
+    if (!isInView) return; // Only autoplay when in view - CRITICAL for performance
+    
     const interval = setInterval(nextMember, AUTO_PLAY_INTERVAL);
     return () => clearInterval(interval);
   }, [nextMember, isInView]);
@@ -322,7 +323,7 @@ export function Team() {
     let opacity = 0;
     let scale = 0.5;
     let x: string | number = 0;
-    let display = "block";
+    // let display = "block"; // Safer to not use none for layout stability
 
     // Optimized for performance
     if (isActive) {
@@ -343,10 +344,10 @@ export function Team() {
     } else {
       x = diff > 0 ? "180%" : "-180%"; 
       opacity = 0;
-      display = "none"; 
+      // display = "none";
     }
 
-    return { zIndex, opacity, scale, x, display };
+    return { zIndex, opacity, scale, x };
   };
 
   return (
@@ -387,10 +388,11 @@ export function Team() {
             <>
                 <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[150px] opacity-40 mix-blend-screen" />
                 <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[120px] opacity-30 mix-blend-screen" />
-                {/* Grain Texture - Only on Desktop */}
-                <div className="absolute inset-0 bg-[url('/images/noise.svg')] opacity-10 mix-blend-overlay" />
             </>
         )}
+        
+        {/* Grain Texture - Only on Desktop - Localized */}
+        <div className="hidden md:block absolute inset-0 bg-[url('/images/noise.svg')] opacity-10 mix-blend-overlay" />
         
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_20%,_#010208_100%)]" />
       </div>

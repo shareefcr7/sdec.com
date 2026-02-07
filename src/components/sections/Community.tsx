@@ -30,7 +30,7 @@ const CodeRain = () => {
   return (
     <div className="absolute inset-0 overflow-hidden opacity-20 pointer-events-none">
       <div className="flex justify-between">
-        {[...Array(5)].map((_, i) => { 
+        {[...Array(5)].map((_, i) => { // Reduced from 8 to 5 for performance
            const Icon = rainIcons[Math.floor(Math.random() * rainIcons.length)];
            const keyword = keywords[Math.floor(Math.random() * keywords.length)];
            return (
@@ -315,7 +315,7 @@ export function Community() {
               transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
               className="absolute inset-0 w-full h-full will-change-transform"
            >
-              {isInView && avatars.map((avatar, i) => { // Only render avatars if in view
+              {avatars.map((avatar, i) => { // Render avatars always but optimize
                  const angle = (i / avatars.length) * 360;
                  return (
                      <div
