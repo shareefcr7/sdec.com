@@ -17,7 +17,7 @@ export function Courses() {
        <div className="absolute inset-0 bg-gradient-to-b from-navy via-navy-light to-navy pointer-events-none" />
        
        {/* Background Noise */}
-       <div className="absolute inset-0 opacity-30 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-soft-light pointer-events-none" />
+       <div className="absolute inset-0 opacity-30 bg-[url('/images/noise.svg')] mix-blend-soft-light pointer-events-none" />
        
        {/* Ambient Glows */}
        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-electric-blue/10 rounded-full blur-[120px] pointer-events-none" />

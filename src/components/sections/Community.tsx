@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Users, GraduationCap, UserCheck, MonitorPlay, Briefcase, Rocket, Code, Laptop, Skull, Zap, RefreshCw, Terminal, Check, SatelliteDish } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -30,7 +30,7 @@ const CodeRain = () => {
   return (
     <div className="absolute inset-0 overflow-hidden opacity-20 pointer-events-none">
       <div className="flex justify-between">
-        {[...Array(5)].map((_, i) => { // Reduced from 8 to 5 for performance
+        {[...Array(5)].map((_, i) => { 
            const Icon = rainIcons[Math.floor(Math.random() * rainIcons.length)];
            const keyword = keywords[Math.floor(Math.random() * keywords.length)];
            return (
@@ -220,22 +220,30 @@ const SatelliteScan = () => {
 };
 
 export function Community() {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { amount: 0.1, once: false });
+
   return (
-    <section id="community" className="py-16 md:py-20 relative overflow-hidden bg-transparent">
+    <section ref={sectionRef} id="community" className="py-16 md:py-20 relative overflow-hidden bg-transparent">
       {/* Background Ambience */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-[#010208] to-[#010208]" />
-      <div className="absolute top-0 left-0 w-full h-full opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-full opacity-20 bg-[url('/images/noise.svg')] mix-blend-overlay pointer-events-none" />
       
-      {/* Code Running Animation */}
-      <CodeRain />
-      
-      {/* Hacker Battle Animation */}
-      <HackerBattle />
-      
-      {/* New Animations */}
-      <SoftwareUpdate />
-      <CodingPerson />
-      <SatelliteScan />
+      {/* Heavy Animations - Only render when In View */}
+      {isInView && (
+        <>
+            {/* Code Running Animation */}
+            <CodeRain />
+            
+            {/* Hacker Battle Animation */}
+            <HackerBattle />
+            
+            {/* New Animations */}
+            <SoftwareUpdate />
+            <CodingPerson />
+            <SatelliteScan />
+        </>
+      )}
 
       <div className="container mx-auto px-6 relative z-10 flex flex-col items-center">
         
@@ -307,7 +315,7 @@ export function Community() {
               transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
               className="absolute inset-0 w-full h-full will-change-transform"
            >
-              {avatars.map((avatar, i) => {
+              {isInView && avatars.map((avatar, i) => { // Only render avatars if in view
                  const angle = (i / avatars.length) * 360;
                  return (
                      <div

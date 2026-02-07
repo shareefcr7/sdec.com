@@ -144,7 +144,10 @@ const TeamCard = memo(({ member, style, isActive }: { member: TeamMember, style:
       duration: PASSING_DURATION,
       ease: [0.22, 1, 0.36, 1]
     }}
-    style={{ willChange: "transform, opacity" }}
+    style={{ 
+      willChange: "transform, opacity",
+      display: style.display 
+    }}
     className="absolute w-[260px] md:w-[320px] aspect-[3/4]"
   >
     <div className={`relative w-full h-full rounded-[2rem] overflow-hidden border transition-all duration-500
@@ -252,7 +255,6 @@ const TeamCard = memo(({ member, style, isActive }: { member: TeamMember, style:
 TeamCard.displayName = "TeamCard";
 
 // --- Main Component ---
-// --- Main Component ---
 export function Team() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
@@ -261,7 +263,7 @@ export function Team() {
   
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { amount: 0.3 });
+  const isInView = useInView(sectionRef, { amount: 0.1 }); // Reduced amount for better triggering
 
   useEffect(() => {
     setMounted(true);
@@ -288,13 +290,10 @@ export function Team() {
   // Audio Playback
   useEffect(() => {
     if (audioRef.current) {
-      // Strictly disable audio on mobile to prevent autoplay errors and performance issues
       if (!isMuted && isInView && !isMobile) {
         const playPromise = audioRef.current.play();
         if (playPromise !== undefined) {
-          playPromise.catch((error) => {
-            // Silently catch the error to prevent "Pause on caught exceptions" in DevTools
-            // console.warn("Audio playback failed:", error); 
+          playPromise.catch(() => {
             setIsMuted(true);
           });
         }
@@ -305,9 +304,10 @@ export function Team() {
   }, [isMuted, isInView, isMobile]);
 
   useEffect(() => {
+    if (!isInView) return; 
     const interval = setInterval(nextMember, AUTO_PLAY_INTERVAL);
     return () => clearInterval(interval);
-  }, [nextMember]);
+  }, [nextMember, isInView]);
 
   const getCardStyle = (index: number) => {
     const total = TEAM_MEMBERS.length;
@@ -322,7 +322,7 @@ export function Team() {
     let opacity = 0;
     let scale = 0.5;
     let x: string | number = 0;
-    let filter = "none";
+    let display = "block";
 
     // Optimized for performance
     if (isActive) {
@@ -343,9 +343,10 @@ export function Team() {
     } else {
       x = diff > 0 ? "180%" : "-180%"; 
       opacity = 0;
+      display = "none"; 
     }
 
-    return { zIndex, opacity, scale, x, filter };
+    return { zIndex, opacity, scale, x, display };
   };
 
   return (
@@ -386,11 +387,10 @@ export function Team() {
             <>
                 <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[150px] opacity-40 mix-blend-screen" />
                 <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[120px] opacity-30 mix-blend-screen" />
+                {/* Grain Texture - Only on Desktop */}
+                <div className="absolute inset-0 bg-[url('/images/noise.svg')] opacity-10 mix-blend-overlay" />
             </>
         )}
-        
-        {/* Grain Texture - Only on Desktop */}
-        <div className="hidden md:block absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay" />
         
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_20%,_#010208_100%)]" />
       </div>
