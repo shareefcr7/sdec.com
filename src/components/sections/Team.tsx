@@ -80,15 +80,6 @@ const TEAM_MEMBERS: TeamMember[] = [
     quote: "Building the high-performance backbone of modern web.",
     icon: Cpu
   },
-  {
-    name: "AJNAS",
-    role: "Fullstack Developer",
-    image: "/images/team/team_7.png",
-    workImage: "/images/team/bg_fullstack.png",
-    bio: "FULLSTACK DEVELOPER",
-    quote: "Engineering robust solutions for complex challenges.",
-    icon: Code
-  },
   { 
     name: "NIVED",
     role: "SOFTWARE TESTER",
