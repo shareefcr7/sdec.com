@@ -63,27 +63,27 @@ const testimonials = [
     text: "Mastering the MERN stack here was a turning point. The real-time projects gave me the confidence to handle high-performance web applications.",
     image: "/images/team/team_5.png"
   },
-  {
-    id: 9,
-    name: "Ajnas",
-    role: "Fullstack Developer",
-    text: "Debugging complex issues and optimizing performance became second nature. The practical exposure here is unmatched in the industry.",
-    image: "/images/team/team_7.png"
-  },
-  {
-    id: 10,
-    name: "Rahib",
-    role: "Full Stack Developer",
-    text: "From writing backend APIs to deploying full-stack apps, the live project experience sharpened my skills and made learning exciting.",
-    image: "/testimonials/rahib_v2.jpg"
-  },
-  {
-    id: 11,
-    name: "Ziyad",
-    role: "Frontend Developer",
-    text: "Understanding cloud infrastructure and CI/CD pipelines has accelerated my career. The practical labs were incredibly useful for my growth.",
-    image: "/testimonials/ziyad_v2.png"
-  },
+  // {
+  //   id: 9,
+  //   name: "Ajnas",
+  //   role: "Fullstack Developer",
+  //   text: "Debugging complex issues and optimizing performance became second nature. The practical exposure here is unmatched in the industry.",
+  //   image: "/images/team/team_7.png"
+  // },
+  // {
+  //   id: 10,
+  //   name: "Rahib",
+  //   role: "Full Stack Developer",
+  //   text: "From writing backend APIs to deploying full-stack apps, the live project experience sharpened my skills and made learning exciting.",
+  //   image: "/testimonials/rahib_v2.jpg"
+  // },
+  // {
+  //   id: 11,
+  //   name: "Ziyad",
+  //   role: "Frontend Developer",
+  //   text: "Understanding cloud infrastructure and CI/CD pipelines has accelerated my career. The practical labs were incredibly useful for my growth.",
+  //   image: "/testimonials/ziyad_v2.png"
+  // },
   {
     id: 12,
     name: "Nived",
@@ -117,24 +117,24 @@ const testimonials = [
 export function Testimonials() {
   return (
     <section className="py-16 md:py-20 bg-transparent relative overflow-hidden">
-      
+
       {/* Background Gradient & Texture */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0b1021] pointer-events-none opacity-100" />
       <div className="absolute inset-0 bg-[url('/images/noise.svg')] opacity-10 mix-blend-overlay pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <SectionHeading 
-           badge="TESTIMONIALS"
-           title={
-             <>
-               <span className="text-white drop-shadow-2xl">Success</span>
-               <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-blue-400 to-cyan-400 drop-shadow-lg">
-                 Stories
-               </span>
-             </>
-           }
-           description="See what our students are achieving."
-         />
+        <SectionHeading
+          badge="TESTIMONIALS"
+          title={
+            <>
+              <span className="text-white drop-shadow-2xl">Success</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-blue-400 to-cyan-400 drop-shadow-lg">
+                Stories
+              </span>
+            </>
+          }
+          description="See what our students are achieving."
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
@@ -151,11 +151,11 @@ export function Testimonials() {
                   <Star key={i} size={16} className="text-yellow-400 fill-yellow-400" />
                 ))}
               </div>
-              
+
               <div className="absolute top-8 right-8">
-                 <div className="w-8 h-8 flex items-center justify-center rounded bg-[#0077b5] text-white cursor-pointer hover:bg-[#006097] transition-colors">
-                    <Linkedin size={18} />
-                 </div>
+                <div className="w-8 h-8 flex items-center justify-center rounded bg-[#0077b5] text-white cursor-pointer hover:bg-[#006097] transition-colors">
+                  <Linkedin size={18} />
+                </div>
               </div>
 
               <p className="text-gray-300 italic mb-8 leading-relaxed font-medium">
@@ -164,17 +164,17 @@ export function Testimonials() {
 
               <div className="flex items-center gap-4">
                 <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-electric-blue/30">
-                  <Image 
-                    src={t.image} 
-                    alt={t.name} 
-                    fill 
+                  <Image
+                    src={t.image}
+                    alt={t.name}
+                    fill
                     sizes="48px"
                     className="object-cover"
                     onError={(e) => {
-                       // Fallback if image fails (using a gradient placeholder)
-                       const target = e.target as HTMLImageElement;
-                       target.style.display = 'none';
-                       target.parentElement!.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                      // Fallback if image fails (using a gradient placeholder)
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      target.parentElement!.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
                     }}
                   />
                 </div>
