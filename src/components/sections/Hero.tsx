@@ -1,11 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Code, Database, Server, GitBranch, Terminal } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const FloatingIcon = ({ icon: Icon, delay, x, y, color }: any) => (
   <motion.div
@@ -34,6 +34,8 @@ const FloatingIcon = ({ icon: Icon, delay, x, y, color }: any) => (
 export function Hero() {
   const [mounted, setMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { amount: 0.1, once: false });
 
   useEffect(() => {
     setMounted(true);
@@ -44,61 +46,67 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-[#020617]">
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-[#020617]">
       {/* --- CINEMATIC FLOWING BACKGROUND --- */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-15 mix-blend-overlay pointer-events-none z-10 hidden md:block" />
-        <motion.div
-          className="absolute inset-x-[-20%] inset-y-[-20%] w-[140%] h-[140%]"
-          initial={{ scale: 1.1, rotate: 0 }}
-          animate={{ 
-            scale: [1.1, 1.2, 1.1],
-            x: ["-3%", "3%", "-3%"],
-            y: ["-2%", "2%", "-2%"],
-            rotate: [0, 2, -2, 0]
-          }}
-          transition={{ 
-            duration: 15, // Faster movement
-            repeat: Infinity, 
-            ease: "easeInOut" 
-          }}
-          style={{ willChange: "transform" }}
-        >
-          <Image 
-            src="/images/hero_particles.png"
-            alt="Cinematic Flowing Particles"
-            fill
-            sizes="100vw"
-            className="object-cover opacity-60 mix-blend-screen scale-110"
-            priority
-          />
-        </motion.div>
-
-        {/* Dynamic Light Streaks */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(isMobile ? 3 : 6)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent"
-              style={{ 
-                width: "40%",
-                top: `${20 + i * 15}%`,
-                left: "-50%",
-                willChange: "left"
-              }}
-              animate={{ left: "120%" }}
-              transition={{ 
-                duration: 4 + i, 
-                repeat: Infinity, 
-                delay: i * 2,
-                ease: "linear" 
-              }}
+        <div className="absolute inset-0 bg-[url('/images/noise.svg')] opacity-15 mix-blend-overlay pointer-events-none z-10 hidden md:block" />
+        
+        {/* Only animate background if in view */}
+        {isInView && (
+          <motion.div
+            className="absolute inset-x-[-20%] inset-y-[-20%] w-[140%] h-[140%]"
+            initial={{ scale: 1.1, rotate: 0 }}
+            animate={{ 
+              scale: [1.1, 1.2, 1.1],
+              x: ["-3%", "3%", "-3%"],
+              y: ["-2%", "2%", "-2%"],
+              rotate: [0, 2, -2, 0]
+            }}
+            transition={{ 
+              duration: 15, // Faster movement
+              repeat: Infinity, 
+              ease: "easeInOut" 
+            }}
+            style={{ willChange: "transform" }}
+          >
+            <Image 
+              src="/images/hero_particles.png"
+              alt="Cinematic Flowing Particles"
+              fill
+              sizes="100vw"
+              className="object-cover opacity-60 mix-blend-screen scale-110"
+              priority
             />
-          ))}
-        </div>
+          </motion.div>
+        )}
 
-        {/* Extra Active Stardust - Only rendered on client to avoid hydration mismatch */}
-        {mounted && (
+        {/* Dynamic Light Streaks - Only if in view */}
+        {isInView && (
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {[...Array(isMobile ? 3 : 6)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent"
+                style={{ 
+                  width: "40%",
+                  top: `${20 + i * 15}%`,
+                  left: "-50%",
+                  willChange: "left"
+                }}
+                animate={{ left: "120%" }}
+                transition={{ 
+                  duration: 4 + i, 
+                  repeat: Infinity, 
+                  delay: i * 2,
+                  ease: "linear" 
+                }}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Extra Active Stardust - Only rendered if mounted and in view */}
+        {mounted && isInView && (
           <div className="absolute inset-0 pointer-events-none">
             {[...Array(isMobile ? 10 : 50)].map((_, i) => (
               <motion.div
@@ -135,11 +143,15 @@ export function Hero() {
 
       {/* --- BACKGROUND DECORATION LAYER (Behind Text) --- */}
       <div className="absolute inset-0 z-0 pointer-events-none hidden md:block">
-        <FloatingIcon icon={Code} delay={0} x={-550} y={-250} color="text-blue-500/30" />
-        <FloatingIcon icon={Server} delay={1} x={550} y={-200} color="text-green-500/30" />
-        <FloatingIcon icon={Database} delay={0.5} x={-600} y={300} color="text-yellow-500/30" />
-        <FloatingIcon icon={GitBranch} delay={1.5} x={600} y={350} color="text-orange-500/30" />
-        <FloatingIcon icon={Terminal} delay={2} x={0} y={-450} color="text-gray-500/30" />
+        {isInView && (
+          <>
+            <FloatingIcon icon={Code} delay={0} x={-550} y={-250} color="text-blue-500/30" />
+            <FloatingIcon icon={Server} delay={1} x={550} y={-200} color="text-green-500/30" />
+            <FloatingIcon icon={Database} delay={0.5} x={-600} y={300} color="text-yellow-500/30" />
+            <FloatingIcon icon={GitBranch} delay={1.5} x={600} y={350} color="text-orange-500/30" />
+            <FloatingIcon icon={Terminal} delay={2} x={0} y={-450} color="text-gray-500/30" />
+          </>
+        )}
       </div>
 
       <div className="container mx-auto px-6 relative z-10 text-center">
@@ -219,16 +231,17 @@ export function Hero() {
         </motion.div>
       </div>
 
-       {/* Scroll Indicator */}
-       <motion.div
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-4 opacity-40"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <span className="text-[10px] uppercase tracking-[0.4em] text-white/50 font-black">Scroll</span>
-        <div className="w-px h-10 bg-gradient-to-b from-electric-blue to-transparent" />
-      </motion.div>
+       {/* Scroll Indicator - Only if in view */}
+       {isInView && (
+         <motion.div
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-4 opacity-40"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <span className="text-[10px] uppercase tracking-[0.4em] text-white/50 font-black">Scroll</span>
+          <div className="w-px h-10 bg-gradient-to-b from-electric-blue to-transparent" />
+        </motion.div>
+       )}
     </section>
   );
 }
-

@@ -217,7 +217,7 @@ export function CTA() {
             </p>
             
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center px-4 w-full md:w-auto">
-              <Link href="/contact" className="w-full md:w-auto">
+              <Link href="/courses" className="w-full md:w-auto">
                 <Button className="w-full md:w-auto h-14 md:h-16 px-10 md:px-12 text-xs font-black uppercase tracking-[0.2em] rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:scale-105 hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all border-none">
                   Join Elite Now
                 </Button>

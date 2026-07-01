@@ -7,19 +7,18 @@ export function Stars() {
 
   useEffect(() => {
     const generateStars = () => {
-      const newStars = [];
-      for (let i = 0; i < 50; i++) {
-        const style: React.CSSProperties = {
+      return Array.from({ length: 50 }, (_, i) => ({
+        id: i,
+        style: {
           left: `${Math.random() * 100}%`,
           top: `${Math.random() * 100}%`,
           animationDuration: `${Math.random() * 3 + 2}s`,
           animationDelay: `${Math.random() * 2}s`,
           opacity: Math.random(),
-        };
-        newStars.push({ id: i, style });
-      }
-      return newStars;
+        } as React.CSSProperties,
+      }));
     };
+    
     setStars(generateStars());
   }, []);
 

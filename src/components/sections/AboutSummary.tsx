@@ -67,7 +67,7 @@ export function AboutSummary() {
       <div className="absolute inset-0 pointer-events-none">
          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[150px] opacity-60" />
          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[120px] opacity-40" />
-         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay" />
+         <div className="absolute inset-0 bg-[url('/images/noise.svg')] opacity-10 mix-blend-overlay" />
       </div>
 
       <CodeRain />

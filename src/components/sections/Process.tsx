@@ -1,8 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { UserPlus, PlayCircle, Code2, MessageCircle, Award, Star, Rocket } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { useRef } from "react";
 
 const steps = [
   { icon: UserPlus, title: "Enroll Course", desc: "Choose your path and join." },
@@ -13,10 +14,13 @@ const steps = [
 ];
 
 export function Process() {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { amount: 0.1, once: false });
+
   return (
-    <section className="py-16 md:py-20 bg-transparent relative overflow-hidden">
+    <section ref={sectionRef} className="py-16 md:py-20 bg-transparent relative overflow-hidden">
       {/* Texture Overlay */}
-      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay pointer-events-none" />
+      <div className="absolute inset-0 bg-[url('/images/noise.svg')] opacity-10 mix-blend-overlay pointer-events-none" />
       <div className="container mx-auto px-6 relative z-10">
         <SectionHeading
           badge="OUR PROCESS"
@@ -52,21 +56,23 @@ export function Process() {
                  strokeDasharray="8 8" 
                  className="opacity-30" 
                />
-               {/* Moving Particle - Vertical - ROCKET */}
-               <g filter="url(#glow)">
-                 <animateMotion 
-                   dur="6s" 
-                   repeatCount="indefinite" 
-                   path="M 1 0 V 1000"
-                   rotate="auto"
-                 />
-                 <circle r="4" fill="#00d2ff" />
-                 <foreignObject width="40" height="40" x="-20" y="-20">
-                    <div className="w-full h-full flex items-center justify-center transform rotate-45">
-                       <Rocket className="text-electric-blue fill-navy w-6 h-6 animate-pulse" />
-                    </div>
-                 </foreignObject>
-               </g>
+               {/* Moving Particle - Vertical - ROCKET - Only animate if in view */}
+               {isInView && (
+                 <g filter="url(#glow)">
+                   <animateMotion 
+                     dur="6s" 
+                     repeatCount="indefinite" 
+                     path="M 1 0 V 1000"
+                     rotate="auto"
+                   />
+                   <circle r="4" fill="#00d2ff" />
+                   <foreignObject width="40" height="40" x="-20" y="-20">
+                      <div className="w-full h-full flex items-center justify-center transform rotate-45">
+                         <Rocket className="text-electric-blue fill-navy w-6 h-6 animate-pulse" />
+                      </div>
+                   </foreignObject>
+                 </g>
+               )}
              </svg>
           </div>
 
@@ -90,6 +96,7 @@ export function Process() {
                  <linearGradient id="activeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                    <stop offset="0%" stopColor="#7000ff" />
                    <stop offset="100%" stopColor="#00d2ff" />
+                   <stop offset="100%" stopColor="#7000ff" stopOpacity="0.2" /> 
                  </linearGradient>
                </defs>
 
@@ -114,24 +121,26 @@ export function Process() {
                  className="opacity-50"
                />
 
-               {/* Continuous Moving Particle - ROCKET */}
-               <g filter="url(#glow)">
-                 <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.96;1" dur="8s" repeatCount="indefinite" />
-                 <animateMotion 
-                   dur="8s" 
-                   repeatCount="indefinite" 
-                   path="M 166 50 L 833 50 A 100 100 0 0 1 833 250 L 333 250"
-                   rotate="auto"
-                 />
-                 <circle r="4" fill="#00d2ff" />
-                 
-                 {/* Rocket Icon following the path */}
-                 <foreignObject width="40" height="40" x="-20" y="-20">
-                    <div className="w-full h-full flex items-center justify-center transform rotate-45"> {/* Adjust rotation for icon orientation */}
-                       <Rocket className="text-electric-blue fill-navy w-6 h-6 animate-pulse" />
-                    </div>
-                 </foreignObject>
-               </g>
+               {/* Continuous Moving Particle - ROCKET - Only animate if in view */}
+               {isInView && (
+                 <g filter="url(#glow)">
+                   <animate attributeName="opacity" values="1;1;0" keyTimes="0;0.96;1" dur="8s" repeatCount="indefinite" />
+                   <animateMotion 
+                     dur="8s" 
+                     repeatCount="indefinite" 
+                     path="M 166 50 L 833 50 A 100 100 0 0 1 833 250 L 333 250"
+                     rotate="auto"
+                   />
+                   <circle r="4" fill="#00d2ff" />
+                   
+                   {/* Rocket Icon following the path */}
+                   <foreignObject width="40" height="40" x="-20" y="-20">
+                      <div className="w-full h-full flex items-center justify-center transform rotate-45"> {/* Adjust rotation for icon orientation */}
+                         <Rocket className="text-electric-blue fill-navy w-6 h-6 animate-pulse" />
+                      </div>
+                   </foreignObject>
+                 </g>
+               )}
              </svg>
           </div>
 
@@ -144,7 +153,7 @@ export function Process() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
-                className="flex flex-col items-center text-center relative z-10"
+                className="flex flex-col items-center text-center relative z-10 will-change-transform"
               >
                   {/* Glowing Orbit Ring */}
                   <div className="relative mb-6 group cursor-pointer bg-navy rounded-full">
@@ -216,20 +225,19 @@ export function Process() {
                            transition={{ duration: 8, times: [0, 0.92, 0.98, 1], repeat: Infinity, ease: "easeOut" }}
                         />
 
-                        {/* Particles Explosion */}
-                        {[...Array(20)].map((_, i) => {
+                        {/* Particles Explosion - Only render if in View */}
+                        {isInView && [...Array(12)].map((_, i) => { // Reduced from 20 to 12
                            // Random angles and distances
-                           const angle = (i * 360) / 20;
+                           const angle = (i * 360) / 12;
                            const radius = 60 + Math.random() * 40;
                            const x = Math.cos(angle * (Math.PI / 180)) * radius;
                            const y = Math.sin(angle * (Math.PI / 180)) * radius;
-                           const delay = Math.random() * 0.05; // Slight offset for natural feel
                            const scale = 0.5 + Math.random();
                            
                            return (
                               <motion.div
                                  key={i}
-                                 className="absolute left-1/2 top-1/2"
+                                 className="absolute left-1/2 top-1/2 will-change-transform"
                                  initial={{ x: 0, y: 0, scale: 0, opacity: 0 }}
                                  animate={{ 
                                     x: [0, 0, x], 

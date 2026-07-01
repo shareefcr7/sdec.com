@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import { WhatsAppButton } from "@/components/ui/whatsapp-button";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -55,6 +56,7 @@ export default function RootLayout({
         className={`${outfit.variable} antialiased bg-[#0A192F] text-white selection:bg-electric-blue/30`}
       >
         {children}
+        <WhatsAppButton />
       </body>
     </html>
   );
