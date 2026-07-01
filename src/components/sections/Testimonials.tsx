@@ -63,6 +63,27 @@ const testimonials = [
     text: "Mastering the MERN stack here was a turning point. The real-time projects gave me the confidence to handle high-performance web applications.",
     image: "/images/team/team_5.png"
   },
+  // {
+  //   id: 9,
+  //   name: "Ajnas",
+  //   role: "Fullstack Developer",
+  //   text: "Debugging complex issues and optimizing performance became second nature. The practical exposure here is unmatched in the industry.",
+  //   image: "/images/team/team_7.png"
+  // },
+  // {
+  //   id: 10,
+  //   name: "Rahib",
+  //   role: "Full Stack Developer",
+  //   text: "From writing backend APIs to deploying full-stack apps, the live project experience sharpened my skills and made learning exciting.",
+  //   image: "/testimonials/rahib_v2.jpg"
+  // },
+  // {
+  //   id: 11,
+  //   name: "Ziyad",
+  //   role: "Frontend Developer",
+  //   text: "Understanding cloud infrastructure and CI/CD pipelines has accelerated my career. The practical labs were incredibly useful for my growth.",
+  //   image: "/testimonials/ziyad_v2.png"
+  // },
   {
     id: 12,
     name: "Nived",

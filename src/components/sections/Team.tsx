@@ -64,7 +64,7 @@ const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     name: "RASHA KP",
-    role: "Fullstack Developer",      
+    role: "Fullstack Developer",
     image: "/images/team/team_3.png",
     workImage: "/images/team/bg_fullstack.png",
     bio: "FULLSTACK DEVELOPER",
@@ -80,7 +80,16 @@ const TEAM_MEMBERS: TeamMember[] = [
     quote: "Building the high-performance backbone of modern web.",
     icon: Cpu
   },
-  { 
+  {
+    name: "AJNAS",
+    role: "Fullstack Developer",
+    image: "/images/team/team_7.png",
+    workImage: "/images/team/bg_fullstack.png",
+    bio: "FULLSTACK DEVELOPER",
+    quote: "Engineering robust solutions for complex challenges.",
+    icon: Code
+  },
+  {
     name: "NIVED",
     role: "SOFTWARE TESTER",
     image: "/images/team/nived.png",
@@ -118,7 +127,7 @@ const TEAM_MEMBERS: TeamMember[] = [
   }
 ];
 
-const AUTO_PLAY_INTERVAL = 3750; 
+const AUTO_PLAY_INTERVAL = 3750;
 const PASSING_DURATION = 0.2;
 
 // --- Sub-Components ---
@@ -135,7 +144,7 @@ const TeamCard = memo(({ member, style, isActive }: { member: TeamMember, style:
       duration: PASSING_DURATION,
       ease: [0.22, 1, 0.36, 1]
     }}
-    style={{ 
+    style={{
       willChange: "transform, opacity",
       // display: style.display // Optimization removed to be safer, focusing on pause logic
     }}
@@ -145,99 +154,99 @@ const TeamCard = memo(({ member, style, isActive }: { member: TeamMember, style:
                     ${isActive ? "border-cyan-500/50 bg-[#080a15] shadow-[0_0_30px_rgba(34,211,238,0.2)]" : "border-white/5 bg-[#05060f]"}
                    `}>
       {/* Glitch/Hologram Effect on Image */}
-      <div className="relative w-full h-full"> 
-         <Image
-            src={member.image}
-            alt={member.name}
-            fill
-            sizes="(max-width: 768px) 260px, 320px"
-            quality={85}
-            priority={isActive}
-            className={`object-cover transition-all duration-[2s] ${isActive ? "scale-100 opacity-100" : "scale-110 opacity-50 grayscale"}`}
+      <div className="relative w-full h-full">
+        <Image
+          src={member.image}
+          alt={member.name}
+          fill
+          sizes="(max-width: 768px) 260px, 320px"
+          quality={85}
+          priority={isActive}
+          className={`object-cover transition-all duration-[2s] ${isActive ? "scale-100 opacity-100" : "scale-110 opacity-50 grayscale"}`}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-80" />
       </div>
-      
+
       {/* --- ACTIVE SCANNER UI --- */}
       {isActive && (
         <div className="absolute inset-0 pointer-events-none z-20">
-            {/* 1. Scanning Line */}
-            <motion.div 
-               animate={{ top: ["0%", "100%", "0%"] }}
-               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-               className="absolute left-0 right-0 h-0.5 bg-cyan-400 shadow-[0_0_10px_#22d3ee] z-30"
-               style={{ willChange: "top" }}
+          {/* 1. Scanning Line */}
+          <motion.div
+            animate={{ top: ["0%", "100%", "0%"] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+            className="absolute left-0 right-0 h-0.5 bg-cyan-400 shadow-[0_0_10px_#22d3ee] z-30"
+            style={{ willChange: "top" }}
+          >
+            <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-t from-cyan-400/20 to-transparent" />
+          </motion.div>
+
+          {/* 2. Viewfinder Corners */}
+          <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-cyan-400 rounded-tl-lg" />
+          <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-cyan-400 rounded-tr-lg" />
+          <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-cyan-400 rounded-bl-lg" />
+          <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-cyan-400 rounded-br-lg" />
+
+          {/* 3. Tech Data Overlay */}
+          <div className="absolute top-8 left-6 space-y-1">
+            <motion.div
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
+              className="flex items-center gap-2"
             >
-                <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-t from-cyan-400/20 to-transparent" />
+              <Shield size={10} className="text-cyan-400" />
+              <span className="text-[8px] font-mono text-cyan-400 tracking-widest">IDENTITY_VERIFIED</span>
             </motion.div>
-
-            {/* 2. Viewfinder Corners */}
-            <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-cyan-400 rounded-tl-lg" />
-            <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-cyan-400 rounded-tr-lg" />
-            <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-cyan-400 rounded-bl-lg" />
-            <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-cyan-400 rounded-br-lg" />
-
-            {/* 3. Tech Data Overlay */}
-            <div className="absolute top-8 left-6 space-y-1">
-                <motion.div 
-                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
-                    className="flex items-center gap-2"
-                >
-                    <Shield size={10} className="text-cyan-400" />
-                    <span className="text-[8px] font-mono text-cyan-400 tracking-widest">IDENTITY_VERIFIED</span>
-                </motion.div>
-                <motion.div 
-                    initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: 1, repeat: Infinity }}
-                    className="h-[1px] bg-cyan-400/30" 
-                />
-            </div>
+            <motion.div
+              initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: 1, repeat: Infinity }}
+              className="h-[1px] bg-cyan-400/30"
+            />
+          </div>
         </div>
       )}
-      
+
       {/* Content Info */}
       <div className="absolute inset-x-0 bottom-0 p-8 transform-gpu z-30 flex flex-col justify-end bg-gradient-to-t from-[#020617] via-[#020617]/80 to-transparent pt-20">
-         <motion.h3 
-           animate={{ 
-             letterSpacing: isActive ? "0px" : "2px",
-             backgroundPosition: ["200% center", "-200% center"]
-           }}
-           transition={{ 
-             letterSpacing: { duration: 0.5 },
-             backgroundPosition: { duration: 3, repeat: Infinity, ease: "linear" }
-           }}
-           style={{
-             backgroundImage: "linear-gradient(90deg, #ffffff 0%, #ffffff 45%, #22d3ee 50%, #ffffff 55%, #ffffff 100%)",
-             backgroundSize: "200% auto",
-             WebkitBackgroundClip: "text",
-             WebkitTextFillColor: "transparent"
-           }}
-           className="text-2xl md:text-3xl font-black tracking-tight uppercase mb-2 leading-none drop-shadow-lg"
-         >
-           {member.name}
-         </motion.h3>
-         
-         <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-3">
-                <span className={`w-8 h-0.5 ${isActive ? 'bg-cyan-400' : 'bg-white/20'}`} />
-                <p className={`${member.role === 'CEO' ? 'text-cyan-400 font-extrabold text-sm md:text-base' : 'text-cyan-400/90 font-bold text-xs md:text-sm'} tracking-widest uppercase`}>
-                    {member.role}
-                </p>
-            </div>
-            
-            {/* Short Description Reveal */}
-            {isActive && (
-                <motion.div 
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    transition={{ duration: 0.5 }}
-                    className="overflow-hidden"
-                >
-                    <p className="text-[10px] md:text-[11px] text-white/60 font-mono border-l-2 border-cyan-500/20 pl-3 leading-relaxed mt-2 uppercase tracking-wider">
+        <motion.h3
+          animate={{
+            letterSpacing: isActive ? "0px" : "2px",
+            backgroundPosition: ["200% center", "-200% center"]
+          }}
+          transition={{
+            letterSpacing: { duration: 0.5 },
+            backgroundPosition: { duration: 3, repeat: Infinity, ease: "linear" }
+          }}
+          style={{
+            backgroundImage: "linear-gradient(90deg, #ffffff 0%, #ffffff 45%, #22d3ee 50%, #ffffff 55%, #ffffff 100%)",
+            backgroundSize: "200% auto",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent"
+          }}
+          className="text-2xl md:text-3xl font-black tracking-tight uppercase mb-2 leading-none drop-shadow-lg"
+        >
+          {member.name}
+        </motion.h3>
+
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-3">
+            <span className={`w-8 h-0.5 ${isActive ? 'bg-cyan-400' : 'bg-white/20'}`} />
+            <p className={`${member.role === 'CEO' ? 'text-cyan-400 font-extrabold text-sm md:text-base' : 'text-cyan-400/90 font-bold text-xs md:text-sm'} tracking-widest uppercase`}>
+              {member.role}
+            </p>
+          </div>
+
+          {/* Short Description Reveal */}
+          {isActive && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              transition={{ duration: 0.5 }}
+              className="overflow-hidden"
+            >
+              <p className="text-[10px] md:text-[11px] text-white/60 font-mono border-l-2 border-cyan-500/20 pl-3 leading-relaxed mt-2 uppercase tracking-wider">
                         // {member.bio}
-                    </p>
-                </motion.div>
-            )}
-         </div>
+              </p>
+            </motion.div>
+          )}
+        </div>
       </div>
     </div>
   </motion.div>
@@ -251,7 +260,7 @@ export function Team() {
   const [isMuted, setIsMuted] = useState(true);
   const [mounted, setMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  
+
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { amount: 0.1 }); // Reduced amount for better triggering
@@ -267,10 +276,10 @@ export function Team() {
   // Initialize Audio
   useEffect(() => {
     if (typeof window !== 'undefined') {
-        const audio = new Audio("https://cdn.pixabay.com/download/audio/2025/10/20/audio_b0342ad798.mp3?filename=samurai-423024.mp3");
-        audioRef.current = audio;
-        audio.volume = 0.5;
-        audio.loop = true;
+      const audio = new Audio("https://cdn.pixabay.com/download/audio/2025/10/20/audio_b0342ad798.mp3?filename=samurai-423024.mp3");
+      audioRef.current = audio;
+      audio.volume = 0.5;
+      audio.loop = true;
     }
   }, []);
 
@@ -296,7 +305,7 @@ export function Team() {
 
   useEffect(() => {
     if (!isInView) return; // Only autoplay when in view - CRITICAL for performance
-    
+
     const interval = setInterval(nextMember, AUTO_PLAY_INTERVAL);
     return () => clearInterval(interval);
   }, [nextMember, isInView]);
@@ -318,22 +327,22 @@ export function Team() {
 
     // Optimized for performance
     if (isActive) {
-      zIndex = 50; 
-      opacity = 1; 
-      scale = isMobile ? 1.05 : 1.2; 
+      zIndex = 50;
+      opacity = 1;
+      scale = isMobile ? 1.05 : 1.2;
       x = 0;
     } else if (isNext) {
-      zIndex = 30; 
-      opacity = 0.3; 
-      scale = 0.8; 
-      x = isMobile ? "80%" : "95%"; 
+      zIndex = 30;
+      opacity = 0.3;
+      scale = 0.8;
+      x = isMobile ? "80%" : "95%";
     } else if (isPrev) {
-      zIndex = 30; 
-      opacity = 0.3; 
-      scale = 0.8; 
+      zIndex = 30;
+      opacity = 0.3;
+      scale = 0.8;
       x = isMobile ? "-80%" : "-95%";
     } else {
-      x = diff > 0 ? "180%" : "-180%"; 
+      x = diff > 0 ? "180%" : "-180%";
       opacity = 0;
       // display = "none";
     }
@@ -360,10 +369,10 @@ export function Team() {
                 <span className="text-[10px] font-black text-cyan-400 leading-none">LIVE</span>
               </div>
               <Volume2 size={18} className="text-cyan-400" />
-              <motion.div 
-                 animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-                 transition={{ duration: 1.5, repeat: Infinity }}
-                 className="absolute right-0 inset-y-0 w-4 h-4 m-auto bg-cyan-400 rounded-full -z-10" 
+              <motion.div
+                animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+                className="absolute right-0 inset-y-0 w-4 h-4 m-auto bg-cyan-400 rounded-full -z-10"
               />
             </div>
           )}
@@ -373,24 +382,24 @@ export function Team() {
       {/* Clean Dark Background Environment */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#010208] via-transparent to-[#010208]" />
-        
+
         {/* Cinematic Ambient Glow - Simplified for Mobile */}
         {!isMobile && (
-            <>
-                <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[150px] opacity-40 mix-blend-screen" />
-                <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[120px] opacity-30 mix-blend-screen" />
-            </>
+          <>
+            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[150px] opacity-40 mix-blend-screen" />
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[120px] opacity-30 mix-blend-screen" />
+          </>
         )}
-        
+
         {/* Grain Texture - Only on Desktop - Localized */}
         <div className="hidden md:block absolute inset-0 bg-[url('/images/noise.svg')] opacity-10 mix-blend-overlay" />
-        
+
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_20%,_#010208_100%)]" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center max-w-7xl mx-auto mb-20 px-6 relative">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -399,67 +408,67 @@ export function Team() {
             <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.5)] animate-pulse" />
             <span className="text-[10px] font-black tracking-[0.6em] uppercase text-cyan-400/50">Core Faculty Profile Scan</span>
           </motion.div>
-          
-          <div className="flex flex-col items-center select-none relative z-20">
-             {/* Small Top Text */}
-             <motion.h2 
-               initial={{ opacity: 0, letterSpacing: "0.2em", y: 20 }}
-               whileInView={{ opacity: 1, letterSpacing: "0.5em", y: 0 }}
-               transition={{ duration: 0.8 }}
-               className="text-lg md:text-2xl font-black text-white uppercase tracking-[0.3em] md:tracking-[0.5em] mb-[-1.5rem] md:mb-[-3rem] relative z-20 mix-blend-exclusion"
-             >
-                Meet Our
-             </motion.h2>
 
-             {/* Large Back Text with Fill Animation */}
-             <div className="relative">
-               <motion.h2 
-                  initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
-                  whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                  transition={{ duration: 1, delay: 0.2 }}
-                  className="text-[clamp(5rem,18vw,12rem)] font-black text-transparent uppercase tracking-tighter"
-                  style={{ 
-                    WebkitTextStroke: '1px rgba(255,255,255,0.4)' 
-                  }}
-               >
-                  Team
-               </motion.h2>
-               
-               {/* Animated Fill Overlay */}
-               <motion.h2
-                  className="absolute inset-0 text-[clamp(5rem,18vw,12rem)] font-black text-cyan-400/20 uppercase tracking-tighter overflow-hidden"
-                  initial={{ clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" }}
-                  whileInView={{ clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)" }}
-                  transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
-                  style={{ 
-                    WebkitTextStroke: '0px transparent' 
-                  }}
-               >
-                  Team
-               </motion.h2>
-             </div>
+          <div className="flex flex-col items-center select-none relative z-20">
+            {/* Small Top Text */}
+            <motion.h2
+              initial={{ opacity: 0, letterSpacing: "0.2em", y: 20 }}
+              whileInView={{ opacity: 1, letterSpacing: "0.5em", y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-lg md:text-2xl font-black text-white uppercase tracking-[0.3em] md:tracking-[0.5em] mb-[-1.5rem] md:mb-[-3rem] relative z-20 mix-blend-exclusion"
+            >
+              Meet Our
+            </motion.h2>
+
+            {/* Large Back Text with Fill Animation */}
+            <div className="relative">
+              <motion.h2
+                initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+                whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                transition={{ duration: 1, delay: 0.2 }}
+                className="text-[clamp(5rem,18vw,12rem)] font-black text-transparent uppercase tracking-tighter"
+                style={{
+                  WebkitTextStroke: '1px rgba(255,255,255,0.4)'
+                }}
+              >
+                Team
+              </motion.h2>
+
+              {/* Animated Fill Overlay */}
+              <motion.h2
+                className="absolute inset-0 text-[clamp(5rem,18vw,12rem)] font-black text-cyan-400/20 uppercase tracking-tighter overflow-hidden"
+                initial={{ clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" }}
+                whileInView={{ clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)" }}
+                transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
+                style={{
+                  WebkitTextStroke: '0px transparent'
+                }}
+              >
+                Team
+              </motion.h2>
+            </div>
           </div>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
             className="flex items-center justify-center gap-6 text-white/10 font-mono text-[9px] uppercase tracking-[0.6em] mt-12"
           >
-             <div className="w-16 h-px bg-white/5" />
-             <span className="text-white/30 italic">Pioneering Global Tech Standards</span>
-             <div className="w-16 h-px bg-white/5" />
+            <div className="w-16 h-px bg-white/5" />
+            <span className="text-white/30 italic">Pioneering Global Tech Standards</span>
+            <div className="w-16 h-px bg-white/5" />
           </motion.div>
         </div>
 
         <div className="relative h-[380px] md:h-[520px] mb-32 flex items-center justify-center">
           <div className="relative w-full h-full flex items-center justify-center">
             {TEAM_MEMBERS.map((member, index) => (
-              <TeamCard 
-                key={index} 
-                member={member} 
-                style={getCardStyle(index)} 
-                isActive={index === activeIndex} 
+              <TeamCard
+                key={index}
+                member={member}
+                style={getCardStyle(index)}
+                isActive={index === activeIndex}
               />
             ))}
           </div>
@@ -467,7 +476,7 @@ export function Team() {
 
         <div className="relative max-w-4xl mx-auto text-center h-[200px]">
           <AnimatePresence mode="wait">
-            <motion.div 
+            <motion.div
               key={activeIndex}
               initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
               animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
@@ -475,27 +484,27 @@ export function Team() {
               transition={{ duration: 0.4 }}
               className="absolute inset-0 flex flex-col items-center"
             >
-               <Quote size={28} className="text-cyan-400/20 mb-8" />
-               <p className="text-2xl md:text-3xl font-light text-white/90 leading-tight mb-12 tracking-tight italic max-w-3xl">
-                  "{TEAM_MEMBERS[activeIndex].quote}"
-               </p>
+              <Quote size={28} className="text-cyan-400/20 mb-8" />
+              <p className="text-2xl md:text-3xl font-light text-white/90 leading-tight mb-12 tracking-tight italic max-w-3xl">
+                "{TEAM_MEMBERS[activeIndex].quote}"
+              </p>
 
-               <div className="flex flex-col items-center gap-4">
-                  <div className="flex items-center gap-2">
-                     <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]" />
-                     <span className="text-cyan-400/60 font-mono text-[9px] tracking-[0.8em] uppercase">
-                       Status: Professional Scan Active
-                     </span>
-                  </div>
-                  <div className="w-48 h-0.5 bg-white/5 rounded-full overflow-hidden">
-                     <motion.div 
-                       initial={{ x: "-100%" }}
-                       animate={{ x: "0%" }}
-                       transition={{ duration: AUTO_PLAY_INTERVAL / 1000, ease: "linear" }}
-                       className="h-full bg-cyan-400/40"
-                     />
-                  </div>
-               </div>
+              <div className="flex flex-col items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]" />
+                  <span className="text-cyan-400/60 font-mono text-[9px] tracking-[0.8em] uppercase">
+                    Status: Professional Scan Active
+                  </span>
+                </div>
+                <div className="w-48 h-0.5 bg-white/5 rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ x: "-100%" }}
+                    animate={{ x: "0%" }}
+                    transition={{ duration: AUTO_PLAY_INTERVAL / 1000, ease: "linear" }}
+                    className="h-full bg-cyan-400/40"
+                  />
+                </div>
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>

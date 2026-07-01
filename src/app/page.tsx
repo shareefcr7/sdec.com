@@ -22,16 +22,16 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-navy text-white relative">
       <LogoIntro onComplete={() => setIntroComplete(true)} />
-      
+
       {introComplete && <Navbar />}
-      
+
       <div className={`transition-opacity duration-1000 ${introComplete ? "opacity-100" : "opacity-0"}`}>
         <Stars />
         <div className="glow-mesh" />
-        
+
         {/* 1. Hero Section (Trust + Interest) */}
         <Hero />
-        
+
         {/* 2. About Academy (Who We Are) */}
         <AboutSummary />
 
@@ -40,25 +40,25 @@ export default function Home() {
 
         {/* 3. Team Section (Credibility) */}
         <Team />
-        
+
         {/* 4. Courses Section (Core Business) */}
         <Courses />
-        
+
         {/* 5. How Learning Works (Process) */}
         <Process />
-        
+
         {/* 6. Exclusive Community (Trust + Connection) */}
         <Community />
-        
+
         {/* 7. Testimonials (Social Proof) */}
         <Testimonials />
-        
+
         {/* 8. FAQ (Support) */}
         <FAQ />
-        
+
         {/* 9. Call To Action (Final Push) */}
         <CTA />
-        
+
         {/* 11. Footer (Closure) */}
         <Footer />
       </div>
